@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>vjs autoplay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Videojs player -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/video.js/7.4.1/video-js.min.css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/video.js/7.4.1/video.min.js"></script>
+</head>
+<body>
+  <video class="video-js vjs-default-skin" id="video" controls preload="auto" playsinline >
+    <source src="https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8" type="application/x-mpegURL" width="1280" height="720" >
+  </video>
+</div>
+  <script>
+    var player = videojs('video', {
+      fluid: true
+    });
+    player.on('ended', function(){
+      console.log("[Iframe Emitter] ended event triggered");
+      var messageData = {'name': 'iframeToFrontendCommunication','sender': 'videojs','event': "ended"};
+      window.parent.postMessage(JSON.stringify(messageData ),'https://rm-vr.s3-ap-northeast-1.amazonaws.com/next_autoplay/frontend_next_autoplay.html');
+    });
+    
+  </script>
+</body>
+
+</html>
