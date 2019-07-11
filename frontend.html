@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>Iframe to frontend communication</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+</head>
+
+<body>
+
+<iframe id="bneIframe" src='//mr1985.github.io/static_player/vjs.html' width='854' height='480' frameborder='0' webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+<script>
+
+window.addEventListener('message', function(message) {
+    console.log("[FrontEnd receiver] : "+ (JSON.parse(message.data).event)); 
+}, false);
+
+</script>
+</body>
+
+</html>
